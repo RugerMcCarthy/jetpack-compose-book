@@ -3,7 +3,7 @@ on:
   push:
   workflow_dispatch:
     branches:
-      - master
+      - auto_pull
   schedule: 
     - cron: "0 0 * * *"
 
@@ -16,6 +16,7 @@ jobs:
         run: |
           git remote add upstream https://github.com/milklabdev/jetpack-compose-book.git
           git remote -v
+          git config pull.rebase false
           git pull -f origin master:master
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
