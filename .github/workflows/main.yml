@@ -1,0 +1,21 @@
+name: AutoPull
+on:
+  push:
+  workflow_dispatch:
+    branches:
+      - master
+  schedule: 
+    - cron: "0 0 * * *"
+
+jobs:
+  auto-pull:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - name: Update
+        run: |
+          git remote add upstream https://github.com/milklabdev/jetpack-compose-book.git
+          git remote -v
+          git pull -f origin master:master
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
