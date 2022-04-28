@@ -17,6 +17,6 @@ jobs:
           git remote add upstream https://github.com/milklabdev/jetpack-compose-book.git
           git remote -v
           git config pull.rebase false
-          git pull -f origin master:master
+          git pull -f origin master:master –allow-unrelated-history
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
